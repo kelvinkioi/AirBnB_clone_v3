@@ -3,7 +3,7 @@
 API index
 """
 from api.v1.views import app_views
-from flask import jsonify
+from flask import Flask, Blueprint, jsonify
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
