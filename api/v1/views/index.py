@@ -34,19 +34,15 @@ def count():
     """
 
     models = {
-        "User": "users",
-        "Amenity": "amenities",
-        "City": "cities",
-        "Place": "places",
-        "Review": "reviews",
-        "State": "states",
-    }
-    objs = [Amenity, City, Place, Review, State, User]
+            "amenities": "Amenity",
+            "cities": "City",
+            "places": "Place",
+            "reviews": "Review",
+            "states": "State",
+            "users": "User"
+            }
 
-    count = {}
-    i = -1
-    for cls in models.keys():
-        i += 1
-        count[models[cls]] = storage.count(objs[i])
-
-    return jsonify(count)
+    r_dict = {}
+    for key, value in models.items():
+        r_dict[key] = storage.count(value)
+    return jsonify(r_dict)
