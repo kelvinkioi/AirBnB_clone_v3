@@ -45,13 +45,13 @@ def place_delete(place_id):
     """
     Deletes a Place object
     """
-    place = storage.get(Place, place_id)
-    if place is None:
+    plc = storage.get(Place, place_id)
+    if plc is None:
         abort(404)
-    place.delete()
-    storage.save()
-    return (jsonify({}))
-
+    else:
+        storage.delete(plc)
+        storage.save()
+        return jsonify({}), 200
 
 @app_views.route('/cities/<string:city_id>/places', methods=['POST'],
                  strict_slashes=False)
