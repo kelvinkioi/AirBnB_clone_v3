@@ -36,9 +36,9 @@ class BaseModel:
                 continue
             setattr(self, key, value)
             if type(self.created_at) is str:
-                self.created_at = datetime.strptime(self.created_at, time_fmt)
+                self.created_at = datetime.strptime(self.created_at, time)
             if type(self.updated_at) is str:
-                self.updated_at = datetime.strptime(self.updated_at, time_fmt)
+                self.updated_at = datetime.strptime(self.updated_at, time)
 
         else:
             self.id = str(uuid.uuid4())
@@ -56,7 +56,7 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def to_dict(self):
+    def to_dict(self, save_to_disk=False):
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
